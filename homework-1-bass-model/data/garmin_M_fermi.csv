@@ -1,0 +1,4 @@
+scenario,garmin_active_users_millions,share_track_sleep,share_buy_band,M_millions
+Low,42,0.21,0.05,0.441
+Base,45,0.26,0.1,1.17
+High,49,0.48,0.2,4.704

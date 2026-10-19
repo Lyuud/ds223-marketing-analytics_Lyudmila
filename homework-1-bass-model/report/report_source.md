@@ -136,9 +136,8 @@ The Index Sleep Monitor was
    the Philippines (TechPorn, 2025).
 
 4. **Global data is available for the estimates in Step 7.** 
-For example, IDC
-   reports that 611.5 million wearable devices were shipped worldwide in 2025
-   (IDC, 2026). Consistent country-level data would be harder to source, and
+For example, IDC reports that 145.7 million wearable devices were shipped worldwide in the first quarter of 2026 (IDC, 2026).
+ Consistent country-level data would be harder to source, and
    every number in this analysis needs a credible reference.
 
 **Limitations.**
@@ -151,7 +150,70 @@ global number of adopters could be split by region using Garmin's regional
 revenue shares.
 
 ## Step 7: Adopters by period
-(to be completed)
+**Method.** Step 7 has two parts. First, I estimate the market potential M
+with a Fermi calculation. Second, I multiply M by the diffusion shape from
+Step 5 (p = 0.0121, q = 0.4542, t = 1 in 2025), so that adopters in year t
+equal M × [F(t) − F(t−1)]. One adopter means one band sold. Code:
+`step7_estimate_adopters.py`.
+
+**Fermi estimate of M.** M = Garmin users × share who track sleep × share
+who buy a dedicated band.
+
+| Layer | Low | Base | High | Source |
+|---|---|---|---|---|
+| Active Garmin Connect users worldwide (millions) | 42 | 45 | 49 | the5krunner (2026) |
+| Share of users who track sleep | 21% | 26% | 50% | Low: CCS Insight, cited in Raconteur (2016); Base: Rock Health (2025); High: JMIR Preprints |
+| Share of those who buy a separate band | 5% | 10% | 20% | Assumption of this report |
+| **M (million units)** | **0.44** | **1.17** | **4.9** | Product of the layers |
+
+The target group is Garmin users, because Garmin markets the band to people
+who wear a Garmin device during the day (Best Buy, 2025). Non-Garmin buyers
+are excluded, so M is conservative. Garmin does not publish a Connect user
+count; the5krunner's estimate is the only available figure and is treated as
+an estimate. The share who buy a band has no source: buying a second
+$169.99 device is a much smaller group than users who track sleep, so I
+assume 10% and test 5% and 20%. The Rock Health share comes from a US survey
+and the JMIR share from a sample of health-technology employees, so the high
+case is an upper bound.
+
+As a plausibility check, the base-case M of 1.17 million units equals about
+5.7% of the 20.7 million units Garmin shipped in 2025 (Garmin, 2026), and the
+peak of about 139 thousand units a year is small next to the 4.9 million
+smart rings IDC forecasts for 2026 (IDC, 2026), consistent with a niche
+accessory.
+
+**Adopters by year (base case, thousands of units).**
+
+| Year | New adopters | Cumulative adopters |
+|---|---|---|
+| 2025 | 17.8 | 17.8 |
+| 2027 | 40.8 | 85.8 |
+| 2030 | 106.9 | 334.2 |
+| 2032 | 138.8 | 600.9 |
+| 2035 | 95.8 | 951.6 |
+| 2037 | 50.4 | 1,073.4 |
+| 2040 | 14.6 | 1,144.6 |
+
+| Scenario | M (million) | Peak-year new adopters (thousands, 2032) | Cumulative by 2040 (thousands) |
+|---|---|---|---|
+| Low | 0.44 | 52 | 431 |
+| Base | 1.17 | 139 | 1,145 |
+| High | 4.90 | 581 | 4,794 |
+
+![Estimated adopters of the Garmin Index Sleep Monitor](../img/garmin_adopters_by_year.png)
+
+**Interpretation.** In the base case about 600 thousand bands are sold by
+2032, when annual sales peak, and about 1.14 million by 2040. The timing is
+fixed by the Bass parameters; the size depends on M, which varies about
+eleven-fold between the low and high cases. The share who buy a band is the
+largest source of that spread.
+
+**Limitations.** (1) The share who buy a band is an assumption. (2) The
+number of Garmin users is an external estimate. (3) The survey shares come
+from different samples, mostly in the United States, and are applied
+worldwide. (4) M is fixed, although Garmin's user base is growing, which
+would raise M over time. (5) The first period is a partial year (launch in
+June 2025). (6) M counts units sold, not distinct people.
 
 ## References
 - TIME. (2025). The Best Inventions of 2025. https://time.com/collections/best-inventions-2025/
@@ -167,7 +229,7 @@ revenue shares.
 - Vice (2025). Hate wearing your smartwatch to bed to track your sleep? Garmin's got a new fix. https://www.garmin.com/en-US/newsroom/press-release/sports-fitness/rest-easy-with-the-index-sleep-monitor-smart-sleep-band-from-garmin/
 - Garmin sleep trachink; https://support.garmin.com/en-US/?faq=mBRMf4ks7XAQ03qtsbI8J6
 - Garmin Ltd. (2026). Annual Report on Form 10-K for fiscal year 2025. U.S. SEC. https://www.sec.gov/Archives/edgar/data/1121788/000119312526056028/grmn-20251227.htm
-- IDC (2026). Worldwide Wearable Device Market Results, 2025. https://www.idc.com/promo/wearablevendor/vendor
+- IDC (2026). Wearable Devices Market Insights, 2026Q1 (updated 2 July 2026). https://www.idc.com/promo/wearablevendor/
 - IDC (2025). Global Wrist-Worn Device Shipments Grew 10.5% in Q1 2025. https://www.idc.com/resource-center/press-releases/idc-global-wrist-worn-device-shipments-grew-10-5-in-q1-2025/
 - TechPorn (2025). Garmin launches Index Sleep Monitor upper-arm band. https://www.techporn.ph/garmin-launches-index-sleep-monitor-upper-arm-band/
 - TechRadar (2025). Garmin heeft de Index Sleep Monitor gelanceerd. https://global.techradar.com/nl-nl/health-fitness/sleep/garmin-heeft-de-index-sleep-monitor-gelanceerd-en-dit-zijn-9-dingen-die-je-erover-moet-weten

@@ -4,7 +4,7 @@ Lyudmila Zakaryan
 
 ## Step 1: The Chosen innovation
 Garmin Index Sleep Monitor, from TIME's Best Inventions of 2025.
-Link: https://time.com/collections/best-inventions-2025/
+Link: https://time.com/collections/best-inventions-2025/7318552/garmin-index-sleep-monitor/
 
 ## Step 2: Look-alike innovation
 Look-alike: Fitness trackers (Fitbit era).
@@ -16,7 +16,38 @@ To analyze the Garmin Index Sleep Monitor, I am using early early-stage Fitbit w
 From a market perspective, early Fitbit devices offer a clear historical precedent for how consumer health trackers diffuse. Fitbit drove rapid adoption partly through community features and social sharing, which created a strong peer-influence effect—directly mirroring the imitation coefficient (q) in the Bass diffusion model. However, while early Fitbits established the mass market for wearable activity trackers, the Garmin Index Sleep Monitor targets a more specialized niche. Priced at $169.99, it specifically solves the discomfort of wearing wristbands to bed for people who already track their health metrics. Because standalone activity trackers were eventually absorbed into general-purpose smartwatches, the Garmin Index functions as a targeted add-on device rather than a mass-market category creator. Consequently, while the diffusion curve will likely share a similar imitation pattern (q), its overall market potential (M) will be significantly smaller than that of early fitness wearables.
 
 ## Step 3: Historical data
-(to be completed)
+**Data source.** The look-alike series is the number of Fitbit devices sold
+worldwide per year from 2010 to 2025, in thousands of units. It comes from
+Statista (2026), which compiles it from Fitbit and Business of Apps. The
+dataset has 16 annual observations and is stored in
+`data/statista_fitbit_units_sold.csv`.
+
+| Year | Units sold (thousands) | Year | Units sold (thousands) |
+|---|---|---|---|
+| 2010 | 58 | 2018 | 13,939 |
+| 2011 | 208 | 2019 | 15,988 |
+| 2012 | 1,279 | 2020 | 10,800 |
+| 2013 | 4,476 | 2021 | 10,600 |
+| 2014 | 10,904 | 2022 | 9,200 |
+| 2015 | 21,355 | 2023 | 6,600 |
+| 2016 | 22,295 | 2024 | 5,500 |
+| 2017 | 15,343 | 2025 | 4,300 |
+
+**Shape of the series.** Sales grew from 58 thousand units in 2010 to a peak
+of 22.3 million in 2016, then declined to 4.3 million in 2025. In total,
+about 152.8 million devices were sold over the period. The rise to 2016 is
+the part of the series that follows the Bass curve; the decline afterwards is
+analysed in Step 4.
+
+**Why this series matches the look-alike.** It covers the full life of a
+wearable tracker from launch to maturity and decline, with yearly unit sales,
+which is the input the Bass model needs. It is also worldwide, which matches
+the global scope chosen in Step 6.
+
+**Limitations.** The series counts devices sold, not distinct users, so
+repeat purchases and replacements are included. The values for 2020 to 2025
+are rounded to the nearest 100 thousand units, while earlier years are
+given more precisely.
 
 ## Step 4: Bass model parameters
 **Method.** 
@@ -162,7 +193,7 @@ who buy a dedicated band.
 | Layer | Low | Base | High | Source |
 |---|---|---|---|---|
 | Active Garmin Connect users worldwide (millions) | 42 | 45 | 49 | the5krunner (2026) |
-| Share of users who track sleep | 21% | 26% | 50% | Low: CCS Insight, cited in Raconteur (2016); Base: Rock Health (2025); High: JMIR Preprints |
+| Share of users who track sleep 21% | 26% | 48% Low: CCS Insight, cited in Raconteur ([YEAR]); Base: Rock Health (2025); High: AASM (2025) |
 | Share of those who buy a separate band | 5% | 10% | 20% | Assumption of this report |
 | **M (million units)** | **0.44** | **1.17** | **4.9** | Product of the layers |
 
@@ -172,9 +203,7 @@ are excluded, so M is conservative. Garmin does not publish a Connect user
 count; the5krunner's estimate is the only available figure and is treated as
 an estimate. The share who buy a band has no source: buying a second
 $169.99 device is a much smaller group than users who track sleep, so I
-assume 10% and test 5% and 20%. The Rock Health share comes from a US survey
-and the JMIR share from a sample of health-technology employees, so the high
-case is an upper bound.
+assume 10% and test 5% and 20%. The Rock Health share comes from a US survey of wearable owners. The AASM figure (48%) covers all US adults who use any sleep-tracking device, so the high case is an upper bound.
 
 As a plausibility check, the base-case M of 1.17 million units equals about
 5.7% of the 20.7 million units Garmin shipped in 2025 (Garmin, 2026), and the
@@ -198,14 +227,14 @@ accessory.
 |---|---|---|---|
 | Low | 0.44 | 52 | 431 |
 | Base | 1.17 | 139 | 1,145 |
-| High | 4.90 | 581 | 4,794 |
+| High |4.70 | 558 | 4,602 |
 
 ![Estimated adopters of the Garmin Index Sleep Monitor](../img/garmin_adopters_by_year.png)
 
 **Interpretation.** In the base case about 600 thousand bands are sold by
 2032, when annual sales peak, and about 1.14 million by 2040. The timing is
 fixed by the Bass parameters; the size depends on M, which varies about
-eleven-fold between the low and high cases. The share who buy a band is the
+ten-fold between the low and high cases. The share who buy a band is the
 largest source of that spread.
 
 **Limitations.** (1) The share who buy a band is an assumption. (2) The
@@ -217,7 +246,8 @@ June 2025). (6) M counts units sold, not distinct people.
 
 ## References
 - TIME. (2025). The Best Inventions of 2025. https://time.com/collections/best-inventions-2025/
-- Tom's Guide. Garmin launches first sleep-only tracker. https://www.tomsguide.com/wellness/sleep-tech/garmin-launches-new-index-sleep-monitor-for-screenless-sleep-tracking
+- TIME. (2025). The Best Inventions of 2025, chosen product ; Garmin index sleep monitor https://time.com/collections/best-inventions-2025/7318552/garmin-index-sleep-monitor/
+- Statista (2026). Number of Fitbit devices sold worldwide from 2010 to 2025 (in 1,000s). Data from Fitbit and Business of Apps. https://www.statista.com/statistics/472591/fitbit-devices-sold/
 - Wearable Technologies. Garmin Launches Sleep-Tracking Armband. https://wearable-technologies.com/cn/news/garmin-launches-sleep-tracking-armband
 - Wareable. The story of Fitbit. https://www.wareable.com/fitbit/youre-fitbit-and-you-know-it-how-a-wooden-box-became-a-dollar-4-billion-company
 - EBSCO Research Starters. Fitbit. https://www.ebsco.com/research-starters/technology/fitbit
@@ -226,10 +256,15 @@ June 2025). (6) M counts units sold, not distinct people.
 - Bass, F. M. (1969). A new product growth for model consumer durables. Management Science, 15(5), 215–227.
 - Sultan, F., Farley, J. U., & Lehmann, D. R. (1990). A meta-analysis of applications of diffusion models. Journal of Marketing Research, 27(1), 70–77.
 - Tom's Guide (2025). Garmin launches first sleep-only tracker. https://www.tomsguide.com/wellness/sleep-tech/garmin-launches-new-index-sleep-monitor-for-screenless-sleep-tracking
-- Vice (2025). Hate wearing your smartwatch to bed to track your sleep? Garmin's got a new fix. https://www.garmin.com/en-US/newsroom/press-release/sports-fitness/rest-easy-with-the-index-sleep-monitor-smart-sleep-band-from-garmin/
+- Vice (2025). Hate wearing your smartwatch to bed to track your sleep? Garmin's got a new fix. https://www.vice.com/en/article/garmin-launches-sleep-index-tracker
 - Garmin sleep trachink; https://support.garmin.com/en-US/?faq=mBRMf4ks7XAQ03qtsbI8J6
 - Garmin Ltd. (2026). Annual Report on Form 10-K for fiscal year 2025. U.S. SEC. https://www.sec.gov/Archives/edgar/data/1121788/000119312526056028/grmn-20251227.htm
 - IDC (2026). Wearable Devices Market Insights, 2026Q1 (updated 2 July 2026). https://www.idc.com/promo/wearablevendor/
 - IDC (2025). Global Wrist-Worn Device Shipments Grew 10.5% in Q1 2025. https://www.idc.com/resource-center/press-releases/idc-global-wrist-worn-device-shipments-grew-10-5-in-q1-2025/
 - TechPorn (2025). Garmin launches Index Sleep Monitor upper-arm band. https://www.techporn.ph/garmin-launches-index-sleep-monitor-upper-arm-band/
 - TechRadar (2025). Garmin heeft de Index Sleep Monitor gelanceerd. https://global.techradar.com/nl-nl/health-fitness/sleep/garmin-heeft-de-index-sleep-monitor-gelanceerd-en-dit-zijn-9-dingen-die-je-erover-moet-weten
+- the5krunner (2026). How many active Garmin Connect users are there in 2026? https://the5krunner.com/2026/05/01/garmin-connect-users-2026/
+- Rock Health (2025). What's your score? Insights on wearables and connected devices from Rock Health's 2025 Consumer Adoption Survey. https://rockhealth.com/insights/whats-your-score-insights-on-wearables-and-connected-devices-from-rock-healths-2025-consumer-adoption-survey/
+- American Academy of Sleep Medicine (2025). AASM Sleep Prioritization Survey: Using Sleep Tracking Devices (fieldwork by Atomik Research, 5–13 June 2025). https://aasm.org/wp-content/uploads/2026/01/sleep-prioritization-survey-2025-using-sleep-tracking-devices.pdf
+- Raconteur (2016). Our love affair with bedtime gadgets (CCS Insight survey). https://www.raconteur.net/our-love-affair-with-bedtime-gadgets
+- Best Buy (2025). Garmin Index Sleep Monitor S/M. https://www.bestbuy.com/product/garmin-index-sleep-monitor-size-s-m-black-2025/JXF9YF5FH8/sku/6635141

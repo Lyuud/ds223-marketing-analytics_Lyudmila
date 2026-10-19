@@ -47,8 +47,9 @@ three parameters from only seven observations, so the fit is nearly guaranteed
 and the parameters are implausible (p = 0.0008, q = 1.21). It also predicts
 sales falling to zero by 2019, which did not happen. The full-sample fit
 (2010–2025) has weaker fit (R² = 0.75) because the real decline after 2016 was
-slower than the model allows, but its parameters (p = 0.012, q = 0.454) are
-close to the values typically reported in the diffusion literature. I use the
+slower than the model allows, its parameters (p = 0.012, q = 0.454) are close to the average values
+reported in a meta-analysis of 213 diffusion studies (p = 0.03, q = 0.38;
+Sultan, Farley and Lehmann, 1990). I use the
 2010–2025 estimates as the main result and report the other two as robustness
 checks.
 
@@ -62,10 +63,92 @@ repeat purchases and replacements, so M overstates the number of distinct
 adopters.
 
 ## Step 5: Predicted diffusion
-(to be completed)
+**Method.**
+ The Garmin Index Sleep Monitor has no sales history, so I apply
+the Bass parameters estimated for the look-alike (Fitbit, 2010–2025:
+p = 0.0121, q = 0.4542) to Garmin. Time t = 1 is the launch year: Garmin
+launched the product on 18 June 2025 at a US price of $169.99 (Vice, 2025;
+Tom's Guide, 2025), so 2025 is year 1. Because M (market potential) is
+estimated separately in Step 7, the forecast here is expressed as a share
+of M. Code: `step5_forecast_garmin.py`.
+
+| Year | Cumulative adopters (% of M) | New adopters in year (% of M) |
+|---|---|---|
+| 2025 | 1.5% | 1.5% |
+| 2027 | 7.3% | 3.5% |
+| 2030 | 28.6% | 9.1% |
+| 2032 | 51.4% | 11.9% |
+| 2035 | 81.3% | 8.2% |
+| 2037 | 91.7% | 4.3% |
+| 2040 | 97.8% | 1.2% |
+
+![Predicted diffusion of the Garmin Index Sleep Monitor](../img/garmin_diffusion_shape.png)
+
+**Result.**
+ Under the main scenario, annual adoption peaks in 2032 at about
+11.9% of M, half of the market is reached in 2032 and 90% by 2037.
+
+**Sensitivity.**
+ To test how much the forecast depends on one set of
+parameters, I repeated it with (a) the Fitbit fit on 2010–2019 data
+(p = 0.0058, q = 0.686) and (b) the average parameters from a meta-analysis
+of 213 diffusion studies (p = 0.03, q = 0.38; Sultan, Farley and Lehmann,
+1990).
+
+| Scenario | Peak year | 50% of M | 90% of M |
+|---|---|---|---|
+| Main: Fitbit 2010–2025 | 2032 | 2032 | 2037 |
+| Fitbit 2010–2019 | 2031 | 2031 | 2035 |
+| Literature average | 2031 | 2031 | 2036 |
+
+The timing of the peak is stable across scenarios (2031–2032), which gives
+confidence in the shape of the curve.
+
+**Limitations.**
+ The look-alike assumption is the main one. Fitbit was a
+stand-alone wrist tracker, while the Index Sleep Monitor is a niche
+accessory that works best alongside a Garmin watch, so its adoption could be
+slower or tied to Garmin's existing customer base. The first period is also
+only a partial year (the launch was in June). The forecast gives the shape
+of diffusion; the number of adopters depends on M, estimated in Step 7.
 
 ## Step 6: Scope
-(to be completed)
+**Decision.** I analyse the diffusion of the Garmin Index Sleep Monitor
+**worldwide**. The choice rests on four points.
+
+1. **The look-alike data is global.**
+ The Fitbit series used to estimate the
+   Bass parameters counts devices sold worldwide (Statista, 2026; Fitbit, 2016,
+   2020). The estimated p and q therefore describe global diffusion, and
+   applying them to one country would mix two different scales.
+
+2. **Garmin is a global business without a dominant country.** 
+Garmin reported
+   net sales of $7.25 billion in fiscal 2025, of which about 48% came from the
+   Americas, 38% from EMEA and 14% from APAC (Garmin, 2026). The largest region
+   is below half of sales, and "Americas" covers more than the United States,
+   so a single-country analysis would cover well under half of Garmin's market.
+
+3. **The product was launched in many markets.** 
+The Index Sleep Monitor was
+   priced at $169.99 in the United States and £149.99 in the United Kingdom
+   (Tom's Guide, 2025), €169.99 in Europe (TechRadar, 2025) and ₱10,290 in
+   the Philippines (TechPorn, 2025).
+
+4. **Global data is available for the estimates in Step 7.** 
+For example, IDC
+   reports that 611.5 million wearable devices were shipped worldwide in 2025
+   (IDC, 2026). Consistent country-level data would be harder to source, and
+   every number in this analysis needs a credible reference.
+
+**Limitations.**
+However, a global scope hides differences between countries. Adoption
+speed and market conditions vary by region; for example, IDC reports that
+government subsidies pushed China's wrist-worn device shipments up 36.9%
+in 2025, far above the global growth rate (IDC, 2025). The global forecast
+should therefore be read as an average across markets. As an extension, the
+global number of adopters could be split by region using Garmin's regional
+revenue shares.
 
 ## Step 7: Adopters by period
 (to be completed)
@@ -78,3 +161,13 @@ adopters.
 - EBSCO Research Starters. Fitbit. https://www.ebsco.com/research-starters/technology/fitbit
 - Wikipedia. Fitbit. https://en.wikipedia.org/wiki/Fitbit
 - Vator. Fitbit's timeline. https://vator.tv/?p=37368
+- Bass, F. M. (1969). A new product growth for model consumer durables. Management Science, 15(5), 215–227.
+- Sultan, F., Farley, J. U., & Lehmann, D. R. (1990). A meta-analysis of applications of diffusion models. Journal of Marketing Research, 27(1), 70–77.
+- Tom's Guide (2025). Garmin launches first sleep-only tracker. https://www.tomsguide.com/wellness/sleep-tech/garmin-launches-new-index-sleep-monitor-for-screenless-sleep-tracking
+- Vice (2025). Hate wearing your smartwatch to bed to track your sleep? Garmin's got a new fix. https://www.garmin.com/en-US/newsroom/press-release/sports-fitness/rest-easy-with-the-index-sleep-monitor-smart-sleep-band-from-garmin/
+- Garmin sleep trachink; https://support.garmin.com/en-US/?faq=mBRMf4ks7XAQ03qtsbI8J6
+- Garmin Ltd. (2026). Annual Report on Form 10-K for fiscal year 2025. U.S. SEC. https://www.sec.gov/Archives/edgar/data/1121788/000119312526056028/grmn-20251227.htm
+- IDC (2026). Worldwide Wearable Device Market Results, 2025. https://www.idc.com/promo/wearablevendor/vendor
+- IDC (2025). Global Wrist-Worn Device Shipments Grew 10.5% in Q1 2025. https://www.idc.com/resource-center/press-releases/idc-global-wrist-worn-device-shipments-grew-10-5-in-q1-2025/
+- TechPorn (2025). Garmin launches Index Sleep Monitor upper-arm band. https://www.techporn.ph/garmin-launches-index-sleep-monitor-upper-arm-band/
+- TechRadar (2025). Garmin heeft de Index Sleep Monitor gelanceerd. https://global.techradar.com/nl-nl/health-fitness/sleep/garmin-heeft-de-index-sleep-monitor-gelanceerd-en-dit-zijn-9-dingen-die-je-erover-moet-weten
